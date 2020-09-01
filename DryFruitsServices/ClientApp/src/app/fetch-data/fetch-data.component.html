@@ -1,0 +1,24 @@
+<h1 id="tableLabel">All Users</h1>
+
+<p *ngIf="!users"><em>Loading...</em></p>
+
+<table class='table table-striped table-responsive' aria-labelledby="tableLabel" *ngIf="users">
+  <thead>
+    <tr>
+      <th>User Id</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Password</th>
+      <th>Active</th>      
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.userId}}</td>
+      <td>{{user.userEmail}}</td>
+      <td>{{user.userMobileNumber}}</td>
+      <td>{{user.userPassword}}</td>
+      <td>{{user.userIsActive}}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,13 @@
+.home-banner{
+    margin-top:50px;    
+}
+
+.home {
+  background-image: url('../../assets/images/home-background.jpg');
+  background-color: #cccccc;
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:cover;
+  position: relative;
+}
