@@ -9,7 +9,6 @@ import { Product } from '../Entities/product';
 
 export class DryfruitsService {
 
-  private localurl ='https://localhost:44377/api/'
   private cloudUrl = 'https://dryfruitsmanagementapi.azurewebsites.net/api/';
   private baseUrl = "";
   constructor(private http: HttpClient) {
