@@ -3,16 +3,15 @@
     <img class="card-img-top" src="../../assets/images/cardImages/{{product.productName}}.png" height="250" />
     <ul class="list-inline text-center member-icons">
       <li class="list-inline-item">
-        <button class="btn-primary btn-primary">E</button>
-      </li>
-      <li class="list-inline-item">
-        <button class="btn-primary btn-primary">C</button>
-      </li>
+        <button class="btn btn-warning btn-block" width="100%">Buy</button>
+      </li>      
     </ul>
   </div>
   <div class="card-body p-2">
     <h3> {{product.productName}}</h3>
-    <h4>Cost : {{product.price}} Rs/KG</h4>
+    <h4>Cost : {{product.price|currency:"&#8377;"}} /KG</h4>
+    <p class=" btn btn-success" *ngIf="product.quantity>0">In Stock</p>
+    <p class="btn btn-danger" *ngIf="product.quantity<=0">Out of Stock</p>
   </div>
 </div>
 

@@ -9,10 +9,11 @@ import { Product } from '../Entities/product';
 
 export class DryfruitsService {
 
-  private baseUrl = 'https://dryfruitsmanagementapi.azurewebsites.net/api/';
-
+  private localurl ='https://localhost:44377/api/'
+  private cloudUrl = 'https://dryfruitsmanagementapi.azurewebsites.net/api/';
+  private baseUrl = "";
   constructor(private http: HttpClient) {
-
+    this.baseUrl = this.localurl;
   }
 
   getAllProducts(): Observable<any> {
