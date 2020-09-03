@@ -13,7 +13,7 @@ export class DryfruitsService {
   private cloudUrl = 'https://dryfruitsmanagementapi.azurewebsites.net/api/';
   private baseUrl = "";
   constructor(private http: HttpClient) {
-    this.baseUrl = this.localurl;
+    this.baseUrl = this.cloudUrl;
   }
 
   getAllProducts(): Observable<any> {
