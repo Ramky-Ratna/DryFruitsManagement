@@ -34,4 +34,12 @@ export class DryfruitsService {
       })
     });
   }
+
+  DeleteProduct(product: Object): Observable<Object> {
+    return this.http.post(this.baseUrl + 'Products', JSON.stringify(product), {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    });
+  }
 }
