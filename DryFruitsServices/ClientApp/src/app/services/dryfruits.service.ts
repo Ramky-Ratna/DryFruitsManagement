@@ -19,6 +19,10 @@ export class DryfruitsService {
     return this.http.get(this.baseUrl+'Products');
   }
 
+  getProductById(id:any): Observable<any> {
+    return this.http.get(this.baseUrl + 'Products/'+id);
+  }
+
   getAllUsers(): Observable<any> {
     return this.http.get(this.baseUrl + 'User');
   }

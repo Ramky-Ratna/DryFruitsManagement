@@ -1,3 +1,19 @@
-<div>
-  Details page: 
+<div class="product-details-card">
+  <div class="row">    
+    <div class="card-wrapper shadow-lg col-sm-6">
+      <img class="card-img-top" src="../../assets/images/cardImages/{{product.productName}}.png" height="250" />
+      <ul class="list-inline text-center member-icons">
+        <li class="list-inline-item">
+          <button class="btn btn-success btn-block" *ngIf="product.quantity>0" width="100%" routerLink="/product-details/{{product.productId}}">Buy Now</button>
+          <button class="btn btn-danger btn-block" *ngIf="product.quantity<=0" width="100%" disabled>Out of Stock</button>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body shadow-lg col-sm-4 p-2">
+      <h3> {{product.productName}}</h3>
+      <h4>Cost : {{product.price|currency:"&#8377;"}} /KG</h4>
+      <p class=" btn btn-success" *ngIf="product.quantity>0">In Stock</p>
+      <p class="btn btn-danger" *ngIf="product.quantity<=0">Out of Stock</p>
+    </div>
+  </div>
 </div>

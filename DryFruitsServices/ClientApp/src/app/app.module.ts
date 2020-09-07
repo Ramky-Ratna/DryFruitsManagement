@@ -35,7 +35,7 @@ import { ProductDetailsComponent } from './products/product-details/product-deta
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'product-list', component: ProductListComponent },
       { path: 'product-card', component: ProductCardComponent },
-      { path: 'product-details', component: ProductDetailsComponent },
+      { path: 'product-details/:id', component: ProductDetailsComponent },
     ])
   ],
   providers: [],
