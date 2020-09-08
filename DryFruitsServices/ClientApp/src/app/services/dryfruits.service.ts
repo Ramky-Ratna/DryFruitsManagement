@@ -8,11 +8,11 @@ import { Product } from '../Entities/product';
 })
 
 export class DryfruitsService {
-
+  private localurl = 'https://localhost:44377/api/';
   private cloudUrl = 'https://dryfruitsmanagementapi.azurewebsites.net/api/';
   private baseUrl = "";
   constructor(private http: HttpClient) {
-    this.baseUrl = this.cloudUrl;
+    this.baseUrl = this.localurl;
   }
 
   getAllProducts(): Observable<any> {
@@ -35,11 +35,15 @@ export class DryfruitsService {
     });
   }
 
-  DeleteProduct(product: Object): Observable<Object> {
-    return this.http.post(this.baseUrl + 'Products', JSON.stringify(product), {
+  UpdateProduct(product: Object): Observable<Object> {
+    return this.http.put(this.baseUrl + 'Products', JSON.stringify(product), {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     });
+  }
+
+  DeleteProduct(productid: number): Observable<{}> {
+    return this.http.delete(this.baseUrl + 'Products/' + productid);
   }
 }
