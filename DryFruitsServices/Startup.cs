@@ -39,8 +39,10 @@ namespace DryFruitsServices
             {
                 app.UseExceptionHandler("/Error");
             }
-            app.UseCors();
-
+            //app.UseCors();
+            app.UseCors(
+                options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()
+                );
             app.UseStaticFiles();
             if (!env.IsDevelopment())
             {
