@@ -48,8 +48,12 @@ namespace DryFruitsManagementAPI.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public IActionResult PutTblProducts(TblProducts tblProducts)
+        public IActionResult PutTblProducts(int id, TblProducts tblProducts)
         {
+            if (id != tblProducts.ProductId)
+            {
+                return BadRequest();
+            }
             tblProducts.Modified = DateTime.Now;
             _repository.UpdatProduct(tblProducts);
             return NoContent();

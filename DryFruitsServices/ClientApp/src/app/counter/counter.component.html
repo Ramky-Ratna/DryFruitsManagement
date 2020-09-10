@@ -25,8 +25,8 @@
             <td>{{prod.price}}</td>
             <td><img src="../../assets/images/cardImages/{{prod.productName}}.png" class="rounded-circle" width="80" height="60" /></td>
             <td>
-              <a alt="edit" href="#"><i class='fas fa-edit'></i></a>
-              <button alt="delete" (click)="show(prod.productId)"><i class='fas fa-times-circle'></i></button>
+              <button class="btn btn-link" alt="edit" (click)="showupdatemodal(prod)"><i class='fas fa-edit'></i></button>
+              <button class="btn btn-link" alt="delete" (click)="show(prod.productId)"><i class='fas fa-times-circle'></i></button>
             </td>
           </tr>
         </tbody>
@@ -47,7 +47,9 @@
         <div class="modal-body">
           <div class="form-group">
             <label>Product Name</label>
-            <input type="text" class="form-control" name="productname" id="productname" required [(ngModel)]="product.ProductName" />
+            <select class="form-control" name="product.ProductName" [(ngModel)]="product.ProductName">
+              <option *ngFor="let pt of productType" [value]="pt">{{pt}}</option>
+            </select>
           </div>
           <div class="form-group">
             <label>Price / Kg</label>
@@ -55,7 +57,7 @@
           </div>
           <div class="form-group">
             <label>Quantity In Kg's</label>
-            <input type="number" class="form-control" name="productname" id="quntity" required [(ngModel)]="product.Quantity" />
+            <input type="number" class="form-control" name="productname" id="quantity" required [(ngModel)]="product.Quantity" />
           </div>
         </div>
         <div class="modal-footer">
@@ -82,8 +84,41 @@
       </div>
       <!-- modal-footer -->
       <div class="modal-footer" id="modal-footer">
-        <button type = "button" (click)="DeleteProduct(productId)" class= "btn btn-primary" id = "ok-btn" > Ok </button>
-        <button type = "button" class= "btn btn-danger" id = "cancel-btn" data-dismiss="modal" (click)="hide()"> Cancel </button>
+        <button type="button" (click)="DeleteProduct(productId)" class="btn btn-primary" id="ok-btn"> Ok </button>
+        <button type="button" class="btn btn-danger" id="cancel-btn" data-dismiss="modal" (click)="hide()"> Cancel </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal-dialog -->
+<div class="modal" [style.display]="showUpdateModal ? 'block' : 'none'" tabindexrole="dialog" id="update-modal">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <!-- modal-header -->
+      <div class="modal-header" id="modal-head">
+        <h4 class="modal-title"> Update Product</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="hideupdatemodal()">&times;</button>
+      </div>
+      <!-- modal-body -->
+      <div class="modal-body" id="modal-body">
+        <div class="form-group">
+          <label>Product Name</label>
+          <input type="text" class="form-control" name="productname" id="productname" [(ngModel)]="product.productName" disabled/>
+        </div>
+        <div class="form-group">
+          <label>Price / Kg</label>
+          <input type="number" class="form-control" name="price" id="price" required [(ngModel)]="product.price" />
+        </div>
+        <div class="form-group">
+          <label>Quantity In Kg's</label>
+          <input type="number" class="form-control" name="productname" id="quntity" required [(ngModel)]="product.quantity" />
+        </div>
+      </div>
+      <!-- modal-footer -->
+      <div class="modal-footer" id="modal-footer">
+        <button type="button" (click)="updateProduct(product.productId)" class="btn btn-primary" id="ok-btn"> Update </button>
+        <button type="button" class="btn btn-danger" id="cancel-btn" data-dismiss="modal" (click)="hideupdatemodal()"> Cancel </button>
       </div>
     </div>
   </div>

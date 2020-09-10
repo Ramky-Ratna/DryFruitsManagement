@@ -12,7 +12,10 @@ export class CounterComponent implements OnInit {
   public products: any;
   public product: Product = new Product();
   public showModal: boolean;
+  public showUpdateModal: boolean;
   public productId: number;
+  public productType=['Almond','Anjeer','Apricot','Cashew','Dates','Kismis','Kiwi','Pista','Walnuts']
+
 
   ngOnInit() {
     this.loadAllProducts();
@@ -39,8 +42,8 @@ export class CounterComponent implements OnInit {
     );
   }
 
-  public updateProduct() {
-    this.dryfruitsService.AddProduct(this.product).subscribe(
+  public updateProduct(productid: number) {
+    this.dryfruitsService.UpdateProduct(productid,this.product).subscribe(
       data => {
         this.loadAllProducts();
         location.reload();
@@ -49,19 +52,16 @@ export class CounterComponent implements OnInit {
   }
 
   public DeleteProduct(productid: number) {
-    //var confirm = window.confirm("Are you sure you want to delete the product?");
-    //if (confirm) {
-      this.dryfruitsService.DeleteProduct(productid).subscribe(
+        this.dryfruitsService.DeleteProduct(productid).subscribe(
         data => {
           this.loadAllProducts();
           this.hide()
           //location.reload();
         }
       );
-    //}
   }
 
-  //Bootstrap Modal Open event
+ //Bootstrap Modal Open event
  public show(productid:number) {
    this.showModal = true; // Show-Hide Modal Check
    this.productId = productid;
@@ -69,5 +69,15 @@ export class CounterComponent implements OnInit {
   //Bootstrap Modal Close event
   public hide() {
     this.showModal = false;
+  }
+
+  //Bootstrap Modal Open event
+  public showupdatemodal(product: any) {
+    this.showUpdateModal = true; // Show-Hide Modal Check
+    this.product = product;
+  }
+  //Bootstrap Modal Close event
+  public hideupdatemodal() {
+    this.showUpdateModal = false;
   }
 }

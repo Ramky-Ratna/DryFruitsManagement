@@ -35,8 +35,8 @@ export class DryfruitsService {
     });
   }
 
-  UpdateProduct(product: Object): Observable<Object> {
-    return this.http.put(this.baseUrl + 'Products', JSON.stringify(product), {
+  UpdateProduct(productid: number, product: Product): Observable<{}> {
+    return this.http.put(this.baseUrl + 'Products/' + productid, JSON.stringify(product), {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
