@@ -14,8 +14,7 @@ export class CounterComponent implements OnInit {
   public showModal: boolean;
   public showUpdateModal: boolean;
   public productId: number;
-  public productType=['Almond','Anjeer','Apricot','Cashew','Dates','Kismis','Kiwi','Pista','Walnuts']
-
+  public productType = ['Almond', 'Anjeer', 'Apricot', 'Cashew', 'Dates', 'Kismis', 'Kiwi', 'Pista', 'Walnuts'];
 
   ngOnInit() {
     this.loadAllProducts();

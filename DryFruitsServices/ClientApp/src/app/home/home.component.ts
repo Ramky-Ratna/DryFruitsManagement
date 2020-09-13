@@ -1,21 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DryfruitsService } from '../services/dryfruits.service';
+import { Product } from '../Entities/product';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['home.component.css']
 })
-export class HomeComponent {
-  users: any;
-  constructor(private dryFruitsService: DryfruitsService) {
+export class HomeComponent implements OnInit {
+
+  public products: Product[];
+  public productTypes = ['Almond', 'Anjeer', 'Apricot', 'Cashew', 'Dates', 'Kismis', 'Kiwi', 'Pista', 'Walnuts'];
+
+  ngOnInit() {
+    this.loadAllProducts();
+  }
+
+  constructor(private dryfruitsService: DryfruitsService) {
 
   }
 
-  ngOnInit(): void {
-    this.dryFruitsService.getAllUsers().subscribe(
+  public loadAllProducts() {
+    this.dryfruitsService.getAllProducts().subscribe(
       data => {
-        this.users = data;
+        this.products = data;
       }
     );
   }
