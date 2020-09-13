@@ -126,9 +126,17 @@ namespace DryFruiltsDataService
             }
         }
 
-        public void UpdatProduct(TblProducts user)
+        public void UpdatProduct(TblProducts product)
         {
-            throw new NotImplementedException();
+            using (var context = new DryFruitsServicesDBContext())
+            {
+                var updateproduct = context.TblProducts.Find(product.ProductId);
+                updateproduct.Quantity = product.Quantity;
+                updateproduct.Price = product.Price;
+                updateproduct.Modified = DateTime.Now;
+                context.Update(updateproduct);
+                context.SaveChanges();
+            }
         }
     }
 }
