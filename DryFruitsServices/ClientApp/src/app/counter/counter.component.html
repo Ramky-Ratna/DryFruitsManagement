@@ -23,10 +23,10 @@
             <td>{{prod.productName}}</td>
             <td>{{prod.quantity}}</td>
             <td>{{prod.price}}</td>
-            <td><img src="../../assets/images/cardImages/{{prod.productName}}.png" class="rounded-circle" width="80" height="60" /></td>
+            <td><img src="../../assets/images/cardImages/{{prod.productTypeText}}.png" class="rounded-circle" width="80" height="60" /></td>
             <td>
-              <button class="btn btn-link" alt="edit" (click)="showupdatemodal(prod)"><i class='fas fa-edit'></i></button>
-              <button class="btn btn-link" alt="delete" (click)="show(prod.productId)"><i class='fas fa-times-circle'></i></button>
+              <button class="btn btn-link" alt="edit" (click)="showupdatemodal(prod)" data-toggle="modal" data-target="#update-modal"><i class='fas fa-edit'></i></button>
+              <button class="btn btn-link" alt="delete" (click)="show(prod.productId)" data-toggle="modal" data-target="#delete-modal"><i class='fas fa-times-circle'></i></button>
             </td>
           </tr>
         </tbody>
@@ -46,10 +46,18 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <label>Product Name</label>
-            <select class="form-control" name="product.ProductName" [(ngModel)]="product.ProductName">
-              <option *ngFor="let pt of productType" [value]="pt">{{pt}}</option>
+            <label>Product Type</label>
+            <select onchange="" class="form-control" name="product.productTypeText" [(ngModel)]="product.productTypeText">
+              <option *ngFor="let pt of productType" [value]="pt.productTypeText">{{pt.productTypeText}}</option>
             </select>
+          </div>
+          <div class="form-group">
+            <label>Product Name</label>
+            <input type="text" class="form-control" name="product.ProductName" id="product.ProductName" required [(ngModel)]="product.ProductName" />
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea rows="5" type="text" class="form-control" name="description" id="description" required [(ngModel)]="product.Description"></textarea>
           </div>
           <div class="form-group">
             <label>Price / Kg</label>
@@ -57,7 +65,7 @@
           </div>
           <div class="form-group">
             <label>Quantity In Kg's</label>
-            <input type="number" class="form-control" name="productname" id="quantity" required [(ngModel)]="product.Quantity" />
+            <input type="number" class="form-control" name="quantity" id="quantity" required [(ngModel)]="product.Quantity" />
           </div>
         </div>
         <div class="modal-footer">
@@ -70,8 +78,8 @@
 </div>
 
 <!-- modal-dialog -->
-<div class="modal" [style.display]="showModal ? 'block' : 'none'" tabindexrole="dialog" id="delete-modal">
-  <div class="modal-dialog modal-sm" role="document">
+<div class="modal" tabindexrole="dialog" id="delete-modal">
+  <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <!-- modal-header -->
       <div class="modal-header" id="modal-head">
@@ -92,8 +100,8 @@
 </div>
 
 <!-- modal-dialog -->
-<div class="modal" [style.display]="showUpdateModal ? 'block' : 'none'" tabindexrole="dialog" id="update-modal">
-  <div class="modal-dialog modal-sm" role="document">
+<div class="modal" tabindexrole="dialog" id="update-modal">
+  <div class="modal-dialog">
     <div class="modal-content">
       <!-- modal-header -->
       <div class="modal-header" id="modal-head">
@@ -104,7 +112,11 @@
       <div class="modal-body" id="modal-body">
         <div class="form-group">
           <label>Product Name</label>
-          <input type="text" class="form-control" name="productname" id="productname" [(ngModel)]="product.productName" disabled/>
+          <input type="text" class="form-control" name="productname" id="productname" [(ngModel)]="product.productName" disabled />
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea rows="5" type="text" class="form-control" name="description" id="description" required [(ngModel)]="product.description">{{product.description}}</textarea>
         </div>
         <div class="form-group">
           <label>Price / Kg</label>

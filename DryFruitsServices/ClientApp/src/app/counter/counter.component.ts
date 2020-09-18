@@ -14,14 +14,23 @@ export class CounterComponent implements OnInit {
   public showModal: boolean;
   public showUpdateModal: boolean;
   public productId: number;
-  public productType = ['Almond', 'Anjeer', 'Apricot', 'Cashew', 'Dates', 'Kismis', 'Kiwi', 'Pista', 'Walnuts'];
+  public productType: any; //= ['Almond', 'Anjeer', 'Apricot', 'Cashew', 'Dates', 'Kismis', 'Kiwi', 'Pista', 'Walnuts'];
 
   ngOnInit() {
+    this.loadAllProductTypes();
     this.loadAllProducts();
   }
 
   constructor(private dryfruitsService:DryfruitsService) {
 
+  }
+
+  public loadAllProductTypes() {
+    this.dryfruitsService.getAllProducttypes().subscribe(
+      data => {
+        this.productType = data;
+      }
+    );
   }
 
   public loadAllProducts() {
@@ -32,7 +41,7 @@ export class CounterComponent implements OnInit {
     );
   }
 
-  public addProduct() {    
+  public addProduct() {
     this.dryfruitsService.AddProduct(this.product).subscribe(
       data => {
         this.loadAllProducts();

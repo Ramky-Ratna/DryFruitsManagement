@@ -65,7 +65,7 @@ namespace DryFruiltsDataService
         {
             try
             {
-                using (var context = new DryFruitsServicesDBContext())
+                using (var context = new DRYFRUITSSERVICESMDFContext())
                 {
                     context.TblProducts.Add(product);
                     context.SaveChanges();
@@ -81,7 +81,7 @@ namespace DryFruiltsDataService
         {
             try
             {
-                using (var context = new DryFruitsServicesDBContext())
+                using (var context = new DRYFRUITSSERVICESMDFContext())
                 {
                     var product = context.TblProducts.Find(productId);
                     context.TblProducts.Remove(product);
@@ -98,7 +98,7 @@ namespace DryFruiltsDataService
         {
             try
             {
-                using (var context = new DryFruitsServicesDBContext())
+                using (var context = new DRYFRUITSSERVICESMDFContext())
                 {
                     return context.TblProducts.ToList();
                 }
@@ -114,7 +114,7 @@ namespace DryFruiltsDataService
         {
             try
             {
-                using (var context = new DryFruitsServicesDBContext())
+                using (var context = new DRYFRUITSSERVICESMDFContext())
                 {
                     var product = context.TblProducts.Where(x => x.ProductId == productId).FirstOrDefault();
                     return product;
@@ -128,14 +128,30 @@ namespace DryFruiltsDataService
 
         public void UpdatProduct(TblProducts product)
         {
-            using (var context = new DryFruitsServicesDBContext())
+            using (var context = new DRYFRUITSSERVICESMDFContext())
             {
                 var updateproduct = context.TblProducts.Find(product.ProductId);
                 updateproduct.Quantity = product.Quantity;
+                updateproduct.Description = product.Description;
                 updateproduct.Price = product.Price;
                 updateproduct.Modified = DateTime.Now;
                 context.Update(updateproduct);
                 context.SaveChanges();
+            }
+        }
+
+        public List<ProductType> GetAllProductTypes()
+        {
+            try
+            {
+                using (var context = new DRYFRUITSSERVICESMDFContext())
+                {
+                    return context.ProductType.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

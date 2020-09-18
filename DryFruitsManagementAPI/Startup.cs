@@ -34,7 +34,7 @@ namespace DryFruitsManagementAPI
             services.AddControllers();
             services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
                 .AddAzureAD(options=>Configuration.Bind("AzureAD", options));
-            services.AddDbContext<DryFruitsServicesDBContext>(options => options.UseSqlServer(Configuration["AzureDBConnectionString"]));
+            services.AddDbContext<DRYFRUITSSERVICESMDFContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
             services.AddSingleton<IDataRepository,DataRepository>();
         }
 

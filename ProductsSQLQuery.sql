@@ -1,6 +1,6 @@
 ﻿create table ProductType(
 	TypeId int identity(1,1) primary key,
-	ProductType varchar(100),
+	ProductTypeText varchar(100),
 	AddedDate datetime,
 	Modified datetime
 )
@@ -11,20 +11,28 @@ create table TblProducts(
 	ProductName varchar(100),
 	Description varchar(max),
 	Price decimal,
-	Quntity int,
+	Quantity int,
 	AddedDate datetime,
 	Modified datetime,
 	FOREIGN KEY (ProductType) references ProductType(TypeId)
 )
 
-select * from ProductType
+alter table TblProducts
+drop constraint FK__TblProduc__Produ__36B12243 
 
-insert into ProductType(ProductType,AddedDate) values('Anjeer',getdate())
-insert into ProductType(ProductType,AddedDate) values('Almond',getdate())
-insert into ProductType(ProductType,AddedDate) values('Apricot',getdate())
-insert into ProductType(ProductType,AddedDate) values('Cashew',getdate())
-insert into ProductType(ProductType,AddedDate) values('Dates',getdate())
-insert into ProductType(ProductType,AddedDate) values('Kismis',getdate())
-insert into ProductType(ProductType,AddedDate) values('Kiwi',getdate())
-insert into ProductType(ProductType,AddedDate) values('Pista',getdate())
-insert into ProductType(ProductType,AddedDate) values('Walnuts',getdate())
+alter table ProductType
+add ProductTypeText varchar(100)
+--drop column ProductType
+--add ProductTypeText varchar(100)
+
+select * from ProductType
+select * from TblProducts
+insert into ProductType(ProductTypeText,AddedDate) values('Anjeer',getdate())
+insert into ProductType(ProductTypeText,AddedDate) values('Almond',getdate())
+insert into ProductType(ProductTypeText,AddedDate) values('Apricot',getdate())
+insert into ProductType(ProductTypeText,AddedDate) values('Cashew',getdate())
+insert into ProductType(ProductTypeText,AddedDate) values('Dates',getdate())
+insert into ProductType(ProductTypeText,AddedDate) values('Kismis',getdate())
+insert into ProductType(ProductTypeText,AddedDate) values('Kiwi',getdate())
+insert into ProductType(ProductTypeText,AddedDate) values('Pista',getdate())
+insert into ProductType(ProductTypeText,AddedDate) values('Walnuts',getdate())

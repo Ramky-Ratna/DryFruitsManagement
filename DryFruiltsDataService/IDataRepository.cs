@@ -12,6 +12,7 @@ namespace DryFruiltsDataService
         void AddUser(TblUser user);
         void UpdateUser(TblUser user);
         void DeleteUser(int userId);
+        List<ProductType> GetAllProductTypes();
         List<TblProducts> GetAllProducts();
         TblProducts GetProductById(int UserId);
         void AddProduct(TblProducts user);
